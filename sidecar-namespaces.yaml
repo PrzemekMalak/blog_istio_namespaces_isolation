@@ -1,0 +1,21 @@
+apiVersion: networking.istio.io/v1beta1
+kind: Sidecar
+metadata:
+  name: prod-only
+  namespace: prod
+spec:
+  egress:
+  - hosts:
+    - "./*"
+    - "istio-system/*"
+---
+apiVersion: networking.istio.io/v1beta1
+kind: Sidecar
+metadata:
+  name: dev-only
+  namespace: dev
+spec:
+  egress:
+  - hosts:
+    - "./*"
+    - "istio-system/*"

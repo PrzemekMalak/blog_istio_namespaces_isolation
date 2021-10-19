@@ -1,0 +1,14 @@
+apiVersion: networking.istio.io/v1beta1
+kind: Sidecar
+metadata:
+  name: permit-to-prod
+  namespace: dev
+spec:
+  egress:
+  - hosts:
+    - "./*"
+    - "prod/app.prod.svc.cluster.local"
+    - "istio-system/*"
+  workloadSelector:
+    labels:
+      app: allowed-to-prod
